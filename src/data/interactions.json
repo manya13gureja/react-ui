@@ -1,0 +1,22 @@
+[
+  {
+    "slug": "dior-drop",
+    "title": "Inspect Component",
+    "description": "Visualise whitespace for a smoother debugging experience.",
+    "tags": ["interaction 1", "Inspect component"],
+    "date": "18–24",
+    "video": "/videos/dior-drop.mp4"
+  },
+  {
+    "slug": "community-garden",
+    "title": "Community Garden",
+    "description": "An experimental interaction design to cultivate local engagement.",
+    "tags": ["Website Design", "Brand Strategy"],
+    "date": "18–24",
+    "media": {
+      "video": "/media/community-video.mp4",
+      "photo": "/media/community-photo.jpg"
+      
+    }
+  }
+]

@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+.hover-underline-animation {
+  position: relative;
+  display: inline-block;
+}
+
+.hover-underline-animation::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.group:hover .hover-underline-animation::after {
+  width: 100%;
+}
+.debug-transition {
+  transition: all 0.3s ease-in-out;
+}
+.max-width-site{
+  width: 600px;
+  max-width: 600px;
+}
