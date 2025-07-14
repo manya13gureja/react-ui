@@ -1,22 +1,89 @@
 [
   {
-    "slug": "dior-drop",
-    "title": "Inspect Component",
+    "slug": "debugger",
+    "title": "Visual Debugger",
     "description": "Visualise whitespace for a smoother debugging experience.",
-    "tags": ["interaction 1", "Inspect component"],
-    "date": "18–24",
-    "video": "/videos/dior-drop.mp4"
+    "tags": ["Interface Interactions"],
+    "video": "/debugger/demo.mp4",
+    "wrapper": "DebugWrapper",
+    "content": [
+      "Modern design systems increasingly use layout components like Stack, Flex, and Grid, making layouts more intuitive and declarative.",
+      "However, deeply nested components can obscure the true structure of a layout, making it difficult for developers and designers to quickly understand spacing and hierarchy.",
+      "By adding a debug property to layout components, developers can toggle a visualization mode that highlights whitespace with varying background shades based on nesting level.",
+      "Elements that add spacing also reveal their exact pixel values on hover, making it easier to inspect and refine layouts."
+    ]
+  },
+   {
+    "slug": "clickandpaste",
+    "title": "Click And Paste",
+    "description": "Copy and paste images with ease.",
+    "tags": ["Content Handling Interactions"],
+    "video": "/clickandpaste/demo.mp4",
+    "wrapper": "ClickAndPaste",
+    "content": [
+      "Copying an image usually feels static — click, drag, drop, done. But the interaction shown here turns that moment into something more tactile, almost physical.",
+      "When you click on an image, it pinches down and follows your cursor, like you’re plucking it off the screen. Move to the drop zone, click, and it plants itself right where it belongs.",
+      "You can only carry one at a time, and only if your hands (or the drop zone) are free. It’s a rule that makes the interaction feel more deliberate.",
+      "It was inspired by the real-life gesture of picking up a pinch of salt, thumb and index finger closing in, lifting something tiny and placing it precisely. Almost like touch, give it a try yourself below."
+    ]
   },
   {
-    "slug": "community-garden",
-    "title": "Community Garden",
-    "description": "An experimental interaction design to cultivate local engagement.",
-    "tags": ["Website Design", "Brand Strategy"],
-    "date": "18–24",
-    "media": {
-      "video": "/media/community-video.mp4",
-      "photo": "/media/community-photo.jpg"
+    "slug": "scroll-preview",
+    "title": "Scroll Preview",
+    "description": "Scroll scrubbing with live previews, navigate long pages like timelines.",
+    "tags": ["Navigation Enhancement Interactions"],
+    "video": "/previews/demo.mp4",
+    "wrapper": "ScrollPreview",
+    "content": [
+      "Long, scroll-heavy websites are everywhere from news to e-commerce. But as pages get longer, navigation becomes harder. You scroll blindly, hoping to land near the section you want.",
+      "This scroll preview interaction fixes that. Simply hover over the scrollbar area, you get a floating thumbnail preview of the section at that position like scrubbing through a video timeline, but for a website.",
+      "When a preview isn’t available, the interaction fallsback to a clean “no preview” state.",
+      "It’s a small interaction, but it changes how you move through a page. Once you get used to it, scrolling without it feels like guessing in the dark."
+    ],
+     "sections": [
+  { "id": "section1", "imageSrc": "/previews/preview1.png" },
+  { "id": "section2", "imageSrc": "/previews/" },
+  { "id": "section3", "imageSrc": "/previews/preview2.png" }
+  
+]
+  },
+{
+  "slug": "link-preview",
+  "title": "Link Hover Preview",
+  "description": "Give users an idea of external destinations without breaking their flow.",
+  "tags": ["Navigation Enhancement Interactions"],
+  "video": "/hoverlink/demo.mp4",
+  "wrapper": "HoverLinkPreview",
+  "content": [
+    "Articles and tutorials usually contain many links to provide additional context or further reading.",
+    "However, opening an external link can disrupt the flow of the article and end up with the user going down a rabbit hole that you never intended.",
+    "We could show a preview of the link on hover and focus to maintain attention, yet still give an idea of the destination.",
+    "There are several approaches to achieve this particular feature. In this case, we extract all URL-s from the code at build time, capture a screenshot of each one, store them as images, and finally reference them with the URL to retrieve the image."
+
+  ],
+  
+
+  "links": [
+   {
+      "label": "Next.js",
+      "image": "/hoverlink/nextjs.png",
+      "url": "https://nextjs.org"
+      
+    },
+    {
+      "label": "Vercel",
+      "image": "/hoverlink/vercel.png",
+      "url": "https://vercel.com"
+      
+    },
+     {
+      "label": "Tailwind CSS",
+      "image": "/hoverlink/tailwind.png",
+      "url": "https://tailwindcss.com"
       
     }
-  }
+  
+  ]
+}
+  
 ]

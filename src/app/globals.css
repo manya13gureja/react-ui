@@ -31,3 +31,36 @@
   width: 600px;
   max-width: 600px;
 }
+.underline-animation {
+  position: relative;
+}
+
+.underline-animation::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: currentColor;
+  transition: width 0.4s ease;
+}
+
+.group:hover .underline-animation::after {
+  width: 100%;
+}
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tooltip-animate {
+  animation: slide-up 0.5s ease-out forwards;
+ 
+}
