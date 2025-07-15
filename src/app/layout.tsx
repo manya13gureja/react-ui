@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Lato } from "next/font/google";
 import "./globals.css";
+import AnimatedNoiseBackground from "@/app/components/AnimatedNoiseBackground";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,8 +33,12 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${lato.variable} antialiased`}
+        style={{ position: 'relative', zIndex: 2 }}
       >
-        {children}
+        <AnimatedNoiseBackground />
+        <div style={{ position: 'relative', zIndex: 2 }}>
+          {children}
+        </div>
       </body>
     </html>
   );

@@ -43,9 +43,6 @@ export default function Home() {
     
     <div className="relative min-h-screen overflow-hidden">
 
-  {/* 🌸 New Radial Background */}
-  <div className="absolute top-0 z-[-2] h-full w-full rotate-180 transform bg-white bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)]"></div>
-
       {/* Header */}
       <header className="flex justify-between items-center px-6 py-4 border-b border-b-gray-400">
         <h1 className="text-2xl font-bold">UI Interactions</h1>
