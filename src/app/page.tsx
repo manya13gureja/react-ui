@@ -44,17 +44,17 @@ export default function Home() {
     <div className="relative min-h-screen overflow-hidden">
 
       {/* Header */}
-      <header className="flex justify-between items-center px-6 py-4 border-b border-b-gray-400">
-        <h1 className="text-2xl font-bold">UI Interactions</h1>
-        <a href="/events" className="text-sm tracking-wide uppercase hover:underline">
+      <header className=" font-redrose flex justify-between items-center px-6 py-4 border-b border-b-gray-400">
+        <h1 className="text-2xl font-bold">eunoia ui</h1>
+        <Link href="/about" className="text-sm tracking-wide uppercase hover:underline">
           About →
-        </a>
+        </Link>
       </header>
 
       {/* Filters Section */}
       <section className="relative h-auto lg:h-96 overflow-hidden">
         {/* Mobile/Tablet: Grid Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:hidden gap-4 p-6">
+        <div className=" font-redrose grid grid-cols-1 sm:grid-cols-2 lg:hidden gap-4 p-6">
           {filters.map((filterItem) => (
             <button
               key={filterItem.id}
@@ -101,7 +101,7 @@ export default function Home() {
       >
         {/* Left: Video */}
         <div className="lg:col-span-3 w-full flex justify-center">
-          <div className="w-full max-w-md aspect-video rounded-xl shadow-xl overflow-hidden">
+          <div className="w-full max-w-md aspect-video rounded-xl border border-pink-200 shadow-xl overflow-hidden">
             <video
               src={project.video}
               autoPlay
@@ -116,9 +116,9 @@ export default function Home() {
         {/* Right: Text */}
         <div className="lg:col-span-3 flex flex-col justify-center text-center lg:text-left gap-4 px-4 lg:px-0">
           <div className="text-lg text-black font-bold uppercase tracking-widest ">
-            {project.title}
+            <span className="font-mono">{project.title}</span>
           </div>
-          <p className="text-gray-800 leading-relaxed text-base max-w-xl mx-auto lg:mx-0">
+          <p className="text-gray-800 leading-relaxed text-base max-w-xl mx-auto lg:mx-0 font-lato">
             {project.description}
           </p>
           <Link

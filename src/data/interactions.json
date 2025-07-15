@@ -37,7 +37,7 @@
     "content": [
       "Long, scroll-heavy websites are everywhere from news to e-commerce. But as pages get longer, navigation becomes harder. You scroll blindly, hoping to land near the section you want.",
       "This scroll preview interaction fixes that. Simply hover over the scrollbar area, you get a floating thumbnail preview of the section at that position like scrubbing through a video timeline, but for a website.",
-      "When a preview isn’t available, the interaction fallsback to a clean “no preview” state.",
+      "When a preview isn’t available, the interaction falls back to a clean “no preview” state. (Give it a try by scrolling down on this page!)",
       "It’s a small interaction, but it changes how you move through a page. Once you get used to it, scrolling without it feels like guessing in the dark."
     ],
      "sections": [
