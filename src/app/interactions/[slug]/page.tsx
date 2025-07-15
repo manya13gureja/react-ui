@@ -95,14 +95,14 @@ export default function Page({ params }: { params: Promise<{ slug: string }> }) 
         {project.content.map((text: string, i: number) =>
           useDebug ? (
             <DebugWrapper key={i} debug={debug} label={`Paragraph ${i + 1}`}>
-              <p className={`mt-6 text-gray-600 leading-relaxed ${lato.className}`}>
-                {text}
-              </p>
+              <p className={`mt-6 text-gray-600 leading-relaxed ${lato.className}`}
+                dangerouslySetInnerHTML={{ __html: highlightImportant(text, project.slug) }}
+              />
             </DebugWrapper>
           ) : (
-            <p key={i} className={`mt-6 text-gray-600 leading-relaxed ${lato.className}`}>
-              {text}
-            </p>
+            <p key={i} className={`mt-6 text-gray-600 leading-relaxed ${lato.className}`}
+              dangerouslySetInnerHTML={{ __html: highlightImportant(text, project.slug) }}
+            />
           )
         )}
       </section>
@@ -143,4 +143,28 @@ export default function Page({ params }: { params: Promise<{ slug: string }> }) 
     
     </div>
   )
+}
+
+function highlightImportant(text: string, slug: string): string {
+  // Per-component important words/phrases (minimal, only the most essential/unique)
+  const highlights: Record<string, string[]> = {
+    'debugger': [
+      'Stack', 'Flex', 'Grid', 'debug property', 'visualization mode', 'highlights whitespace', 'nesting level', 'pixel values', 'inspect', 'refine layouts'
+    ],
+    'clickandpaste': [
+      'Copying an image', 'tactile', 'pinches down', 'follows your cursor', 'drop zone', 'plants itself', 'real-life gesture', 'pinch of salt', 'touch'
+    ],
+    'scroll-preview': [
+      'scroll preview interaction', 'floating thumbnail preview', 'timeline', 'no preview', 'move through a page', 'scrolling', 'guessing in the dark'
+    ],
+    'link-preview': [
+      'external link', 'disrupt the flow', 'preview of the link', 'hover', 'focus', 'attention', 'destination', 'extract all URL-s', 'screenshot', 'images', 'reference', 'retrieve the image'
+    ]
+  };
+  let result = text;
+  (highlights[slug] || []).forEach(phrase => {
+    // Use regex for whole word/phrase, case-insensitive
+    result = result.replace(new RegExp(`(${phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi'), '<strong>$1</strong>');
+  });
+  return result;
 }
