@@ -16,7 +16,7 @@ export function ClickAndPaste({ width = 200, height = 200 }: ClickAndPasteProps)
 
   const dragImageRef = useRef<HTMLImageElement | null>(null);
   const dropRef = useRef<HTMLDivElement>(null);
-  const dragImageSrc = '/clickandpaste/copy.JPG';
+  const dragImageSrc = '/clickandpaste/copy.jpg';
 
   useEffect(() => {
     let animationFrameId: number;
