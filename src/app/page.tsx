@@ -18,7 +18,7 @@ const interactions = [
 ];
 
 const getPositionClasses = (position: string) => {
-  // For absolute positioning on larger screens only
+
   const positions = {
     'top-left': 'lg:absolute lg:top-24 lg:left-32',
     'top-right': 'lg:absolute lg:top-24 lg:right-42',
@@ -89,7 +89,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Interactions Grid */}
       {/* Interactions Grid */}
       <section className="pb-12">
         <div className="max-w-6xl mx-auto space-y-24">

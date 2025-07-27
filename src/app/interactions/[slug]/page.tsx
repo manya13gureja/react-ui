@@ -137,7 +137,7 @@ export default function Page({ params }: { params: Promise<{ slug: string }> }) 
 }
 
 function highlightImportant(text: string, slug: string): string {
-  // Per-component important words/phrases (minimal, only the most essential/unique)
+ 
   const highlights: Record<string, string[]> = {
     debugger: [
       'Stack',
@@ -188,7 +188,7 @@ function highlightImportant(text: string, slug: string): string {
   };
   let result = text;
   (highlights[slug] || []).forEach((phrase) => {
-    // Use regex for whole word/phrase, case-insensitive
+  
     result = result.replace(
       new RegExp(`(${phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi'),
       '<strong>$1</strong>',
