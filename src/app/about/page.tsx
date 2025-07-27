@@ -1,3 +1,4 @@
+import { SpeedInsights } from "@vercel/speed-insights/next"
 'use client';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
