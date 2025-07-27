@@ -1,36 +1,35 @@
-'use client'
+'use client';
 
-import { useState, use } from 'react'
-import { notFound } from 'next/navigation'
-import projects from '@/data/interactions.json'
-import { ScrollPreview } from '@/app/components/ScrollPreview'
-import { DebugWrapper } from '@/app/components/Debugwrapper'
-import { Lato } from 'next/font/google'
-import { Bug } from 'lucide-react'
-import { HoverLinkPreview } from '@/app/components/HoverLink'
-import {ClickAndPaste} from '@/app/components/CopyPaste'
+import { useState, use } from 'react';
+import { notFound } from 'next/navigation';
+import projects from '@/data/interactions.json';
+import { ScrollPreview } from '@/app/components/ScrollPreview';
+import { DebugWrapper } from '@/app/components/Debugwrapper';
+import { Lato } from 'next/font/google';
+import { Bug } from 'lucide-react';
+import { HoverLinkPreview } from '@/app/components/HoverLink';
+import { ClickAndPaste } from '@/app/components/CopyPaste';
 
 const lato = Lato({
   subsets: ['latin'],
   weight: ['400', '700'],
   variable: '--font-lato',
-})
+});
 
 export default function Page({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = use(params)
-  const project = projects.find((p) => p.slug === slug)
-  if (!project) return notFound()
+  const { slug } = use(params);
+  const project = projects.find((p) => p.slug === slug);
+  if (!project) return notFound();
 
-  const [debug, setDebug] = useState(false)
+  const [debug, setDebug] = useState(false);
 
-  const useDebug = project.wrapper === 'DebugWrapper'
-  const useScroll = project.wrapper === 'ScrollPreview'
-  const useLinkPreview = project.wrapper === 'HoverLinkPreview'
-  const useCopyPaste = project.wrapper === 'ClickAndPaste'
+  const useDebug = project.wrapper === 'DebugWrapper';
+  const useScroll = project.wrapper === 'ScrollPreview';
+  const useLinkPreview = project.wrapper === 'HoverLinkPreview';
+  const useCopyPaste = project.wrapper === 'ClickAndPaste';
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white text-black overflow-visible ">
-
       {/* ScrollPreview interaction */}
       {useScroll && <ScrollPreview sections={project.sections || []} />}
 
@@ -49,9 +48,7 @@ export default function Page({ params }: { params: Promise<{ slug: string }> }) 
             >
               <Bug className="w-5 h-5" />
             </button>
-            <p className="text-xs text-gray-500 mt-2">
-              {debug ? 'Debugger On' : 'Debugger Off'}
-            </p>
+            <p className="text-xs text-gray-500 mt-2">{debug ? 'Debugger On' : 'Debugger Off'}</p>
           </div>
         )}
         <h1 className="text-4xl font-bold mb-6">{project.title}</h1>
@@ -95,15 +92,18 @@ export default function Page({ params }: { params: Promise<{ slug: string }> }) 
         {project.content.map((text: string, i: number) =>
           useDebug ? (
             <DebugWrapper key={i} debug={debug} label={`Paragraph ${i + 1}`}>
-              <p className={`mt-6 text-gray-600 leading-relaxed ${lato.className}`}
+              <p
+                className={`mt-6 text-gray-600 leading-relaxed ${lato.className}`}
                 dangerouslySetInnerHTML={{ __html: highlightImportant(text, project.slug) }}
               />
             </DebugWrapper>
           ) : (
-            <p key={i} className={`mt-6 text-gray-600 leading-relaxed ${lato.className}`}
+            <p
+              key={i}
+              className={`mt-6 text-gray-600 leading-relaxed ${lato.className}`}
               dangerouslySetInnerHTML={{ __html: highlightImportant(text, project.slug) }}
             />
-          )
+          ),
         )}
       </section>
 
@@ -112,13 +112,9 @@ export default function Page({ params }: { params: Promise<{ slug: string }> }) 
       {useLinkPreview && project.links && (
         <section className="max-width-site flex flex-col gap-2 mx-auto  space-y-8">
           {project.links.map((link: any, i: number) => (
-            <div key={i} className="pb-6"> 
-              <HoverLinkPreview
-              label={link.label}
-              url={link.url}
-              image={link.image}
-          />
-  </div>
+            <div key={i} className="pb-6">
+              <HoverLinkPreview label={link.label} url={link.url} image={link.image} />
+            </div>
           ))}
         </section>
       )}
@@ -129,42 +125,74 @@ export default function Page({ params }: { params: Promise<{ slug: string }> }) 
         </section>
       )}
       {/* Footer */}
-      
-  <section className="max-w-4xl mx-auto px-6 pt-24 pb-8 text-center text-sm text-pink-900 font-light">
-  <div className="inline-block">
-    Built by{' '}
-    <HoverLinkPreview
-      label="Manya"
-      url="https://x.com/milkfuggler"
-      image="/manya.png"
-    />
-  </div>
-</section>
-    
+
+      <section className="max-w-4xl mx-auto px-6 pt-24 pb-8 text-center text-sm text-pink-900 font-light">
+        <div className="inline-block">
+          Built by{' '}
+          <HoverLinkPreview label="Manya" url="https://x.com/milkfuggler" image="/manya.png" />
+        </div>
+      </section>
     </div>
-  )
+  );
 }
 
 function highlightImportant(text: string, slug: string): string {
   // Per-component important words/phrases (minimal, only the most essential/unique)
   const highlights: Record<string, string[]> = {
-    'debugger': [
-      'Stack', 'Flex', 'Grid', 'debug property', 'visualization mode', 'highlights whitespace', 'nesting level', 'pixel values', 'inspect', 'refine layouts'
+    debugger: [
+      'Stack',
+      'Flex',
+      'Grid',
+      'debug property',
+      'visualization mode',
+      'highlights whitespace',
+      'nesting level',
+      'pixel values',
+      'inspect',
+      'refine layouts',
     ],
-    'clickandpaste': [
-      'Copying an image', 'tactile', 'pinches down', 'follows your cursor', 'drop zone', 'plants itself', 'real-life gesture', 'pinch of salt', 'touch'
+    clickandpaste: [
+      'Copying an image',
+      'tactile',
+      'pinches down',
+      'follows your cursor',
+      'drop zone',
+      'plants itself',
+      'real-life gesture',
+      'pinch of salt',
+      'touch',
     ],
     'scroll-preview': [
-      'scroll preview interaction', 'floating thumbnail preview', 'timeline', 'no preview', 'move through a page', 'scrolling', 'guessing in the dark'
+      'scroll preview interaction',
+      'floating thumbnail preview',
+      'timeline',
+      'no preview',
+      'move through a page',
+      'scrolling',
+      'guessing in the dark',
     ],
     'link-preview': [
-      'external link', 'disrupt the flow', 'preview of the link', 'hover', 'focus', 'attention', 'destination', 'extract all URL-s', 'screenshot', 'images', 'reference', 'retrieve the image'
-    ]
+      'external link',
+      'disrupt the flow',
+      'preview of the link',
+      'hover',
+      'focus',
+      'attention',
+      'destination',
+      'extract all URL-s',
+      'screenshot',
+      'images',
+      'reference',
+      'retrieve the image',
+    ],
   };
   let result = text;
-  (highlights[slug] || []).forEach(phrase => {
+  (highlights[slug] || []).forEach((phrase) => {
     // Use regex for whole word/phrase, case-insensitive
-    result = result.replace(new RegExp(`(${phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi'), '<strong>$1</strong>');
+    result = result.replace(
+      new RegExp(`(${phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi'),
+      '<strong>$1</strong>',
+    );
   });
   return result;
 }

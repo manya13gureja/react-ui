@@ -1,5 +1,5 @@
-"use client";
-import { useEffect, useRef } from "react";
+'use client';
+import { useEffect, useRef } from 'react';
 
 // Particle shader: animated, noisy, blurred, dark blue-gradient particles
 const particleFragShader = `
@@ -65,7 +65,7 @@ function createShader(gl: WebGLRenderingContext, type: number, source: string) {
   gl.shaderSource(shader, source);
   gl.compileShader(shader);
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    throw new Error(gl.getShaderInfoLog(shader) || "Shader compile error");
+    throw new Error(gl.getShaderInfoLog(shader) || 'Shader compile error');
   }
   return shader;
 }
@@ -77,7 +77,7 @@ function createProgram(gl: WebGLRenderingContext, vsSource: string, fsSource: st
   gl.attachShader(program, fs);
   gl.linkProgram(program);
   if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-    throw new Error(gl.getProgramInfoLog(program) || "Program link error");
+    throw new Error(gl.getProgramInfoLog(program) || 'Program link error');
   }
   return program;
 }
@@ -88,11 +88,16 @@ const vertexShader = `
   }
 `;
 
-function useWebGLBackground(canvasRef: React.RefObject<HTMLCanvasElement | null>, fragShader: string) {
+function useWebGLBackground(
+  canvasRef: React.RefObject<HTMLCanvasElement | null>,
+  fragShader: string,
+) {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const gl = canvas.getContext("webgl", { premultipliedAlpha: false }) as WebGLRenderingContext | null;
+    const gl = canvas.getContext('webgl', {
+      premultipliedAlpha: false,
+    }) as WebGLRenderingContext | null;
     if (!gl) return;
     const program = createProgram(gl, vertexShader, fragShader);
     gl.useProgram(program);
@@ -100,21 +105,14 @@ function useWebGLBackground(canvasRef: React.RefObject<HTMLCanvasElement | null>
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
     gl.bufferData(
       gl.ARRAY_BUFFER,
-      new Float32Array([
-        -1, -1,
-        1, -1,
-        -1, 1,
-        -1, 1,
-        1, -1,
-        1, 1,
-      ]),
-      gl.STATIC_DRAW
+      new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]),
+      gl.STATIC_DRAW,
     );
-    const posLoc = gl.getAttribLocation(program, "a_position");
+    const posLoc = gl.getAttribLocation(program, 'a_position');
     gl.enableVertexAttribArray(posLoc);
     gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
-    const uTime = gl.getUniformLocation(program, "u_time");
-    const uRes = gl.getUniformLocation(program, "u_resolution");
+    const uTime = gl.getUniformLocation(program, 'u_time');
+    const uRes = gl.getUniformLocation(program, 'u_resolution');
     let animationId: number;
     let start = performance.now();
     function resize() {
@@ -124,12 +122,12 @@ function useWebGLBackground(canvasRef: React.RefObject<HTMLCanvasElement | null>
       const h = window.innerHeight;
       canvas.width = w * dpr;
       canvas.height = h * dpr;
-      canvas.style.width = w + "px";
-      canvas.style.height = h + "px";
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
       gl.viewport(0, 0, canvas.width, canvas.height);
     }
     resize();
-    window.addEventListener("resize", resize);
+    window.addEventListener('resize', resize);
     function render() {
       if (!gl || !canvas) return;
       const now = performance.now();
@@ -141,7 +139,7 @@ function useWebGLBackground(canvasRef: React.RefObject<HTMLCanvasElement | null>
     }
     render();
     return () => {
-      window.removeEventListener("resize", resize);
+      window.removeEventListener('resize', resize);
       cancelAnimationFrame(animationId);
     };
   }, [canvasRef, fragShader]);
@@ -158,16 +156,16 @@ export default function AnimatedNoiseBackground() {
       <canvas
         ref={particleCanvasRef}
         style={{
-          position: "fixed",
+          position: 'fixed',
           top: 0,
           left: 0,
-          width: "100vw",
-          height: "100vh",
+          width: '100vw',
+          height: '100vh',
           zIndex: 0,
-          pointerEvents: "none",
+          pointerEvents: 'none',
           opacity: 1,
-          filter: "blur(4px)",
-          background: "transparent",
+          filter: 'blur(4px)',
+          background: 'transparent',
         }}
         aria-hidden="true"
         tabIndex={-1}
@@ -176,20 +174,20 @@ export default function AnimatedNoiseBackground() {
       <canvas
         ref={glassCanvasRef}
         style={{
-          position: "fixed",
+          position: 'fixed',
           top: 0,
           left: 0,
-          width: "100vw",
-          height: "100vh",
+          width: '100vw',
+          height: '100vh',
           zIndex: 1,
-          pointerEvents: "none",
+          pointerEvents: 'none',
           opacity: 1,
-          filter: "blur(2px)",
-          background: "transparent",
+          filter: 'blur(2px)',
+          background: 'transparent',
         }}
         aria-hidden="true"
         tabIndex={-1}
       />
     </>
   );
-} 
+}
